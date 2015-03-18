@@ -1,3 +1,7 @@
+.idea
+.pynative
+ASN.1/c-codec
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
