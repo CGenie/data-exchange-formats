@@ -1,6 +1,6 @@
 C_SOURCE := c-codec
-INCLUDES_OLD := -I/home/przemek/asn1c-bin/share/asn1c -I${C_SOURCE}
-LIBS := /home/przemek/asn1c-bin/share/lib/asn1c.o
+INCLUDES_OLD := -I$(HOME)/asn1c-bin/share/asn1c -I${C_SOURCE}
+LIBS := $(HOME)/asn1c-bin/share/lib/asn1c.o
 INCLUDES := -I${C_SOURCE}
 
 all:

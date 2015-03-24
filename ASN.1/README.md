@@ -1,6 +1,6 @@
 Install Python packages from `requirements.txt`
 
-Install git://github.com/vlm/asn1c.git:
+Install https://github.com/vlm/asn1c:
 ```
 autoreconf -iv
 ./configure
