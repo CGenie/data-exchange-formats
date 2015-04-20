@@ -9,7 +9,10 @@
 #include <errno.h>
 #include <arpa/inet.h>
 
-#include <FooQuestion.h>
+#include <Room.h>
+#include <RoomType.h>
+#include <Message.h>
+#include <User.h>
 
 #define HOSTNAME "127.0.0.1"
 #define PORT 8001
@@ -76,26 +79,76 @@ int main(int argc, char* argv[]) {
     int sockfd = initialize_socket();
     int n = 0;
     char recvBuff[1024];
+    int tmp;
 
-    FooQuestion_t* question;
+    User_t* user;
+    int user_id[] = {1, 1};
+    const char EMAIL[] = "abx@localhost";
+    const char USERNAME[] = "TestUser";
+
+    RoomType_t* rt;
+
+    Room_t* room;
+    int room_id[] = {2, 1};
+    const char ROOMNAME[] = "Test Room";
+
+    Message_t* message;
+    // NOTE: set message_id[] to {3, 1} and you get <absent> message_id ?
+    // Code in OBJECT_IDENTIFIER.c reveals some special treatment for first
+    // value being in 0..2 range. Strange!
+    int message_id[] = {2, 2};
+    const char MESSAGE[] = "This is a test message";
+
     asn_enc_rval_t ec;
     OCTET_STRING_t *q;
-    const char QUESTION[] = "What's your name?";
-    char *output = calloc(100, sizeof(char));
+    char *output = calloc(1000, sizeof(char));
 
-    question = calloc(1, sizeof(FooQuestion_t));
+    // USER
+    user = calloc(1, sizeof(User_t));
+    // User.id (returning temporary variable)
+    tmp = OBJECT_IDENTIFIER_set_arcs(&user->id, user_id, sizeof(user_id[0]), sizeof(user_id) / sizeof(user_id[0]));
+    // User.email
+    q = OCTET_STRING_new_fromBuf(&asn_DEF_UTF8String, EMAIL, strlen(EMAIL));
+    user->email = *q;
+    // User.username
+    q = OCTET_STRING_new_fromBuf(&asn_DEF_UTF8String, USERNAME, strlen(USERNAME));
+    user->username = *q;
 
-    question->trackingNumber = 5;
-    q = OCTET_STRING_new_fromBuf(&asn_DEF_IA5String, QUESTION, strlen(QUESTION));
+    // ROOMTYPE
+    rt = calloc(1, sizeof(RoomType_t));
+    rt->present = RoomType_PR_public;
 
-    question->question = *q;
+    // ROOM
+    room = calloc(1, sizeof(Room_t));
+    // Room.id
+    tmp = OBJECT_IDENTIFIER_set_arcs(&room->id, room_id, sizeof(room_id[0]), sizeof(room_id) / sizeof(room_id[0]));
+    // Room.name
+    q = OCTET_STRING_new_fromBuf(&asn_DEF_UTF8String, ROOMNAME, strlen(ROOMNAME));
+    room->name = *q;
+    // Room.type
+    room->type = *rt;
 
-    ec = der_encode(&asn_DEF_FooQuestion, question, write_string, output);
+    // MESSAGE
+    message = calloc(1, sizeof(Message_t));
+    // Message.id
+    tmp = OBJECT_IDENTIFIER_set_arcs(&message->id, message_id, sizeof(message_id[0]), sizeof(message_id) / sizeof(message_id[0]));
+    // Message.user
+    message->user = *user;
+    // Message.room
+    message->room = *room;
+    // Message.message
+    q = OCTET_STRING_new_fromBuf(&asn_DEF_UTF8String, MESSAGE, strlen(MESSAGE));
+    message->message = *q;
 
-    asn_fprint(stdout, &asn_DEF_FooQuestion, question);
-    //xer_fprint(stdout, &asn_DEF_FooQuestion, question);
+    ec = der_encode(&asn_DEF_Message, message, write_string, output);
 
-    memset(recvBuff, '0',sizeof(recvBuff));
+    asn_fprint(stdout, &asn_DEF_User, user);
+    asn_fprint(stdout, &asn_DEF_RoomType, rt);
+    asn_fprint(stdout, &asn_DEF_Room, room);
+    asn_fprint(stdout, &asn_DEF_Message, message);
+    //xer_fprint(stdout, &asn_DEF_User, user);
+
+    memset(recvBuff, '0', sizeof(recvBuff));
 
     send(sockfd, output, ec.encoded, 0);
 

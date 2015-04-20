@@ -7,7 +7,7 @@ import traceback
 from pyasn1.codec.der import decoder
 from pyasn1.codec.der import encoder
 
-import weapons
+import chatroom
 
 
 if __name__ == '__main__':
@@ -25,7 +25,8 @@ if __name__ == '__main__':
         data = clientsocket.recv(4096)
         print data
         try:
-            print decoder.decode(data, weapons.FooQuestion())
+            decoded = decoder.decode(data, chatroom.Message())
+            print decoded[0].prettyPrint()
         except Exception:
             traceback.print_exc()
             print

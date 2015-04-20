@@ -2,12 +2,11 @@
 
 C_OUTPUT_DIR=c-codec
 
-python -m asn1ate.pyasn1gen weapons.asn | tee weapons.py
+python -m asn1ate.pyasn1gen chatroom.asn | tee chatroom.py
 
 rm -Rf $C_OUTPUT_DIR
 mkdir $C_OUTPUT_DIR
-#$HOME/git-work/github/ASN.1/asn1scc/Asn1f2/bin/Debug/Asn1f2.exe -c weapons.asn -o $C_OUTPUT_DIR
-$HOME/git-work/github/ASN.1/asn1c/asn1c/asn1c -fnative-types weapons.asn
+$HOME/asn1c-bin/bin/asn1c -fnative-types chatroom.asn
 mv *.c $C_OUTPUT_DIR
 mv *.h $C_OUTPUT_DIR
 mv Makefile.am.sample $C_OUTPUT_DIR
