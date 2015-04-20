@@ -131,6 +131,7 @@ int main(int argc, char* argv[]) {
     // MESSAGE
     message = calloc(1, sizeof(Message_t));
     // Message.id
+    // NOTE: Try to comment this line and see how server reacts
     tmp = OBJECT_IDENTIFIER_set_arcs(&message->id, message_id, sizeof(message_id[0]), sizeof(message_id) / sizeof(message_id[0]));
     // Message.user
     message->user = *user;
