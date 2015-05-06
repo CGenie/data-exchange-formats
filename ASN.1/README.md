@@ -51,6 +51,9 @@ to test the C client.
 
 ## Conclusions
 
+With ASN.1 you are not bound to XML, JSON or whatever, with JSONSchema it's only JSON. And since ASN.1 is about data
+and not it's format, you can [encode ASN.1 to JSON](http://www.obj-sys.com/docs/JSONEncodingRules.pdf).
+
 In Python JSON serialization is much faster than ASN.1 but when you throw in `jsonschema` validation it becomes
 much slower:
 
@@ -82,3 +85,5 @@ Traceback (most recent call last):
     'Uninitialized component #%s at %r' % (idx, self)
 pyasn1.error.PyAsn1Error: Uninitialized component #3 at Message().setComponentByPosition(0, ObjectIdentifier(3.1)).setComponentByPosition(1, User().setComponentByPosition(0, ObjectIdentifier(1.1)).setComponentByPosition(1, UTF8String('xyz@localhost')).setComponentByPosition(2, UTF8String('User'))).setComponentByPosition(2, Room().setComponentByPosition(0, ObjectIdentifier(2.1)).setComponentByPosition(1, UTF8String('Test Room')).setComponentByPosition(2, RoomType().setComponentByPosition(1, Null(''))))
 ```
+
+ASN.1 supports a wide range of types, including things like [GeneralizedTime](http://www.obj-sys.com/asn1tutorial/node14.html)
