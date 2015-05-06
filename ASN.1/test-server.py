@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import base64
 import socket
 import time
 import traceback
@@ -27,6 +28,10 @@ if __name__ == '__main__':
         try:
             decoded = decoder.decode(data, chatroom.Message())
             print decoded[0].prettyPrint()
+            with open('server-message-received', 'wb') as f:
+                f.write(data)
+            with open('server-message-received.b64', 'w') as f:
+                f.write(base64.b64encode(data))
         except Exception:
             traceback.print_exc()
             print
