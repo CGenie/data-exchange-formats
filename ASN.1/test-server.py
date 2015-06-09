@@ -24,7 +24,7 @@ if __name__ == '__main__':
         #ct = client_thread(clientsocket)
         #ct.run()
         data = clientsocket.recv(4096)
-        print data
+        print repr(data)
         try:
             decoded = decoder.decode(data, chatroom.Message())
             print decoded[0].prettyPrint()
