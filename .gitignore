@@ -1,6 +1,7 @@
 .idea
 .pynative
 ASN.1/c-codec
+protobuf/compiled
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
