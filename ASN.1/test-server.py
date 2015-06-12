@@ -5,6 +5,7 @@ import socket
 import time
 import traceback
 
+from pyasn1.codec import ber
 from pyasn1.codec.der import decoder
 from pyasn1.codec.der import encoder
 
@@ -28,6 +29,9 @@ if __name__ == '__main__':
         try:
             decoded = decoder.decode(data, chatroom.Message())
             print decoded[0].prettyPrint()
+            ber_encoded = ber.encoder.encode(decoded[0])
+            # DER-encoded strings can be decoded with BER too
+            print decoder.decode(ber_encoded, chatroom.Message())[0].prettyPrint()
             with open('server-message-received', 'wb') as f:
                 f.write(data)
             with open('server-message-received.b64', 'w') as f:
