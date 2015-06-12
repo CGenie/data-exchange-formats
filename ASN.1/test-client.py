@@ -30,7 +30,7 @@ m.setComponentByName('message', 'Test chatroom message')
 
 
 if __name__ == '__main__':
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.connect(('localhost', 8001))
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.connect(('localhost', 8001))
 
-    client.send(encoder.encode(m))
+    server.send(encoder.encode(m))
