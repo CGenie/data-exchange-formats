@@ -1,0 +1,7 @@
+{
+  "name": "protobuf-test-server",
+  "version": "0.0.1",
+  "devDependencies": {
+    "protobufjs": "*"
+  }
+}
