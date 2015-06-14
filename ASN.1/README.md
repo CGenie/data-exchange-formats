@@ -175,6 +175,12 @@ my-field ::= My-Type{1, UTF8String}
 ```
 Unfortunately, it seems that `pyasn1` doesn't support parametrization of types.
 
+- `ASN.1` allows strings to match some Regexp pattern as in:
+```
+dateAndTime ::= VisibleString (PATTERN "\d#2/\d#2/\d#4-\d#2:\d#2") -- DD/MM/YYYY-HH:MM
+```
+Unfortunately, it seems that `pyasn1` doesn't support this.
+
 - You can encode `ASN.1` in your favorite `JSON` format: http://www.obj-sys.com/docs/JSONEncodingRules.pdf 
 - Redditors opinions about `ASN.1` are very extreme: http://www.reddit.com/r/programming/comments/1hf7ds/useful_old_technologies_asn1/ (provide some quotes)
 - Some quotes from [Eric Naggum's](http://en.wikipedia.org/wiki/Erik_Naggum) post regarding `ASN.1`:
