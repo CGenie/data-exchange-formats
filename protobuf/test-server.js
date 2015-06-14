@@ -4,17 +4,11 @@ var ProtoBuf = require('protobufjs');
 
 // "builder" contains all message types defined in chatroom.proto|desc.
 var builder = ProtoBuf.loadProtoFile('chatroom.proto');
-console.log('builder', builder);
+var builder_v2 = ProtoBuf.loadProtoFile('chatroom-2.proto');
 
 // The "chatroom" package.
 var chatroom = builder.build('chatroom');
-console.log('chatroom', chatroom);
-
-//var ob = { num: 42 };
-//ob.payload = new Buffer("Hello World");
-
-//var proto = BufTest.serialize(ob);
-//console.log('proto.length:', proto.length);
+var chatroom_v2 = builder_v2.build('chatroom');
 
 var server = net.createServer(function(c) {  // 'connection' listener
     console.log('client connected');
@@ -22,11 +16,18 @@ var server = net.createServer(function(c) {  // 'connection' listener
         console.log('client disconnected');
     });
     c.on('data', function(data) {
-        console.log('Incoming data: ', data.toString());
-        debugger;
+        var msg;
 
-        var msg = chatroom.User.decode(data.toString(), 'base64');
-        console.log('unserialised:', msg);
+        console.log('--------------------------------');
+        console.log('Incoming data: ', data.toString());
+
+        try {
+            msg = chatroom_v2.User.decode(data.toString(), 'base64');
+            console.log('unserialised (v2):', msg);
+        } catch(e) {
+            msg = chatroom.User.decode(data.toString(), 'base64');
+            console.log('unserialised:', msg);
+        }
     });
 });
 

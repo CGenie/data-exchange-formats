@@ -1,0 +1,31 @@
+package chatroom;
+
+// Specification of a simple chatroom protocol
+
+message User {
+    required int32 id = 1;
+    required string email = 2;
+    required string username = 3;
+    required string first_name = 4;
+    required string last_name = 5;
+    optional int32 age = 6;
+}
+
+enum RoomType {
+    PRIVATE = 1;
+    PUBLIC = 2;
+}
+
+message Room {
+    required int32 id = 1;
+    required string name = 2;
+    required RoomType type = 3 [default = PUBLIC];
+}
+
+message Message {
+    required int32 id = 1;
+    required User user = 2;
+    required Room room = 3;
+    required string msg = 4;
+}
+
