@@ -97,7 +97,21 @@ ASN.1 supports a wide range of types, including things like [GeneralizedTime](ht
 [Encoding rules](http://www.oss.com/asn1/resources/asn1-made-simple/encoding-rules.html)
 `OpenSSL` [includes](https://www.openssl.org/docs/apps/asn1parse.html) an `ASN.1` parser: `openssl asn1parse -in ~/.ssh/id_rsa.asn1-test` (_WARNING_: file needs to be unencrypted, if it is encrypted use `openssl rsa -in <encrypted_file> -out <unencrypted_file>`).
 
+## Birth of ASN.1
+In 1984 the Telegraph and Telephone Consultative Commitee (part of the International Telecommunication Union) standardized the
+notation X.409 ("Message Handling Sytems: Presentation Transfer Syntax and Notation") developed by James White and
+Douglas Steedman. It defined the built-in types of: `ANY`, `BIT STRING`, `BOOLEAN`, `CHOICE`, `INTEGER`, `NULL`,
+`OCTET STRING`, `SEQUENCE`, `SEQUENCE OF`, `SET`, `SET OF` and the character string types: `IA5String`, `NumericString`,
+`PrintableString`, `T61String`, `VideotexString`, `GeneralizedTime`, `UTCTime`. This standard was independent of
+the Message Handling System and so other commitees started using it. They called it `ASN.1`, the ".1" implying in ISO way
+that there could be more such formats, but to this day there does not exist `ASN.2`. `ASN.1` was standardized on its own
+in 1987 under references ISO 8824 and ISO 8825. The ISO and ITU-T commitees have joined their forces in 1998.
+
 ## Random remarks
+- The specification breaks down into one or several modules.
+- The specifier can restrict which definitions it exports with the `EXPORTS` clause (without `EXPORTS` all definitions are exported).
+- The generality of `INTEGER` is sometimes held against `ASN.1` but the specifier can just add range definition and for example for range
+  `INTEGER (12345..12346)` the `PER` encoder would encode this number on a single bit.
 - The `ASN.1` bug: https://jbp.io/2015/06/11/cve-2015-1788-openssl-binpoly-hang/
 - ASN.1, protobuf - self-documenting, with JSON you need: return JSON, validate fields, document fields - that's 3 times rewriting code
 - Don't know how to define `DEFAULT` subtype of type, i.e.:
@@ -323,6 +337,17 @@ It uses additional information, such as the lower and upper limits for numeric v
 There are two variations of packed encoding rules: unaligned and aligned. With the unaligned encoding, the bits are packed with no regard for octet (byte) boundaries. With aligned encoding, certain types of data structures are aligned on octet boundaries, meaning there may be some number of wasted padding bits. Unaligned encoding uses the least number of bits, but presumably at some cost in processing time.
 
 The packed encoding rules also define a restricted set of encoding rules, called CANONICAL-PER, which is intended to produce only a single possible encoding for any given data structure. CANONICAL-PER's role is therefore similar to the role of DER or CER."
+
+From (http://www.w3.org/Protocols/HTTP-NG/asn1.html):
+```
+The packed encoding rules use a different style of encoding [from DER]. Instead of using a generic style of encoding that encodes all types in a uniform way, the PER specialise the encoding based on the data type to generate much more compact representations.
+
+PER only generates tags when they are needed to prevent ambiguity this only occurs when ASN.1's version of union is used (CHOICE). PER also only generates lengths when the size of an object can vary. Even then, PER tries to represent the lengths in the most compact form possible.
+
+PER encodings are not always aligned on byte boundaries- if the 'aligned' variant of the rules is used, then strings *will* be aligned - otherwise the encoding is treated as a string of bits, allowing things like booleans and small integers to be squished together in one byte.
+
+The presence of optional elements in a sequence is indicated by a list of single bit flags placed at the start of a sequence - if the bit is set, then the option is present. 
+```
 
 ## XER Encoding
 

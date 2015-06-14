@@ -1,8 +1,11 @@
 #!/bin/bash
 
+set -e
+
 C_OUTPUT_DIR=c-codec
 
 python -m asn1ate.pyasn1gen chatroom.asn | tee chatroom.py
+python -m asn1ate.pyasn1gen chatroom-2.asn | tee chatroom_v2.py
 
 rm -Rf $C_OUTPUT_DIR
 mkdir $C_OUTPUT_DIR
