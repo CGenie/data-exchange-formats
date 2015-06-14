@@ -6,8 +6,9 @@ ChatRoomProtocol DEFINITIONS ::= BEGIN
         email          UTF8String (SIZE(1..40)),
         username       UTF8String (SIZE(1..40)),
         ...,
-        firstName     UTF8String (SIZE(1..40)),
-        lastName      UTF8String (SIZE(1..40))
+        firstName      UTF8String (SIZE(1..40)),
+        lastName       UTF8String (SIZE(1..40)),
+        age            INTEGER OPTIONAL
     }
 
     RoomType ::= CHOICE {

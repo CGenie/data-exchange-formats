@@ -40,6 +40,7 @@ def v2_message():
     u.setComponentByName('username', 'User')
     u.setComponentByName('firstName', 'Frank')
     u.setComponentByName('lastName', 'Underwood')
+    u.setComponentByName('age', 50)
 
     rt = chatroom_v2.RoomType()
     rt.setComponentByName('public', None)
