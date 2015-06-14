@@ -112,6 +112,8 @@ in 1987 under references ISO 8824 and ISO 8825. The ISO and ITU-T commitees have
 - The specifier can restrict which definitions it exports with the `EXPORTS` clause (without `EXPORTS` all definitions are exported).
 - The generality of `INTEGER` is sometimes held against `ASN.1` but the specifier can just add range definition and for example for range
   `INTEGER (12345..12346)` the `PER` encoder would encode this number on a single bit.
+- There are many different exotic string types, which is a legacy of old technologies like Videotex (Minitel for example)
+  [!Minitel](http://cdn.arstechnica.net//wp-content/uploads/2012/06/4271111360_dc27809b59_o.jpg)
 - The `ASN.1` bug: https://jbp.io/2015/06/11/cve-2015-1788-openssl-binpoly-hang/
 - ASN.1, protobuf - self-documenting, with JSON you need: return JSON, validate fields, document fields - that's 3 times rewriting code
 - Don't know how to define `DEFAULT` subtype of type, i.e.:

@@ -27,3 +27,4 @@ Use the Python client with `python test-client.py`.
     - It is way slower than traditional `JSON` encode/decode (because of no native support probably): http://jsperf.com/json-vs-protobuf
   - Clojure: https://github.com/flatland/clojure-protobuf
 - `ASN.1` with `PER` encoding can be more compact: http://stackoverflow.com/a/4441622
+- Based on `protobuf` Google released an RPC framework called [`gRPC`](http://www.grpc.io/).
