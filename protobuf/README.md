@@ -16,6 +16,8 @@ Use the Python client with `python test-client.py`.
   - validations and extensibility (?)
   - easy language interoperability -- true
 - Whoa: `int32`, `int64`, `uint32`, `uint64`, `sint32`, `sint64`, `fixed32`, `fixed64`, `sfixed32`, `sfixed64`
+- Does not support ranges as in `ASN.1`.
+- Does not have something like `OBJECT IDENTIFIER` from `ASN.1`.
 - Some rules when defining `.proto` files (see also [this](https://developers.google.com/protocol-buffers/docs/proto#updating)):
    - you must not change the tag numbers of any existing fields.
    - you must not add or delete any required fields.

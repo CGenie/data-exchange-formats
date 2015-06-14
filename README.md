@@ -31,6 +31,18 @@ The ISO-standardized one is `ASN.1`. Big companies create and use their own:
 - Thrift (Facebook)
 - Bond (Microsoft)
 
+Various schema-less formats also exist (samples encode `{'compact': True, 'schema': 0, 'name': 'Test'}`):
+- [Concise Binary Object Representation (CBOR)](http://cbor.io/)
+  ```
+  00000000: a347 636f 6d70 6163 74f5 446e 616d 6544  .Gcompact.DnameD
+  00000010: 5465 7374 4673 6368 656d 6100            TestFschema.
+  ```
+- [MessagePack](http://msgpack.org/)
+  ```
+  00000000: 83a7 636f 6d70 6163 74c3 a46e 616d 65a4  ..compact..name.
+  00000010: 5465 7374 a673 6368 656d 6100            Test.schema.
+  ```
+
 ## Why not just stick with XML/JSON ?
 ([quote](https://ttsiodras.github.io/asn1.html)) "If you value optimal encoding/decoding performance, minimal encoded message size, guarantees of code safety, and minimal power requirements for encoding/decoding messages, then no, `XML` is most definitely NOT better. That's why your mobile phone has used `ASN.1` encoding while you were reading this article. I am not kidding - almost every single signalling message that your phone sends to the local cell tower, is encoded via `ASN.1`!
 If on the other hand...

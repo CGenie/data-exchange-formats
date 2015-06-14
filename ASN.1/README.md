@@ -119,6 +119,7 @@ in 1987 under references ISO 8824 and ISO 8825. The ISO and ITU-T commitees have
   upperCase UTF8String (FROM("A".."Z"))
   ```
   Unfortunately, it seems that `pyasn1` doesn't support this.
+- Universal, uniquely-defined datatypes can be created by using the `OBJECT IDENTIFIER` clause.
 - The `ASN.1` bug: https://jbp.io/2015/06/11/cve-2015-1788-openssl-binpoly-hang/
 - ASN.1, protobuf - self-documenting, with JSON you need: return JSON, validate fields, document fields - that's 3 times rewriting code
 - Don't know how to define `DEFAULT` subtype of type, i.e.:
@@ -205,6 +206,15 @@ Unfortunately, it seems that `pyasn1` doesn't support this.
 [Notes about extensibility of ASN.1](http://lionet.info/asn1c/blog/2010/09/21/question-extensibility-removing-fields/)
 
 You can either use `...` after all non-extensible fields are present or use `EXTENSIBILITY IMPLIED` module option.
+
+
+## GSER Encoding
+Human-readable. From [Wikipedia](https://en.wikipedia.org/wiki/Generic_String_Encoding_Rules):
+"Generic String Encoding Rules (GSER) are a set of ASN.1 encoding rules for producing a verbose, human-readable textual transfer syntax for data structures described in ASN.1.
+
+The purpose of GSER is to represent encoded data to the user or input data from the user, in a very straightforward format. GSER was originally designed for the Lightweight Directory Access Protocol (LDAP) and is rarely used outside of it. The use of GSER in actual protocols is discouraged since not all character string encodings supported by ASN.1 can be reproduced in it.
+
+The GSER encoding rules are specified in RFC 3641 and unlike other common types of encoding rules, are not standardised by ITU-T."
 
 ## BER Encoding
 Has lots of way to encode.
