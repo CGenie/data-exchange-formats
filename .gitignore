@@ -1,7 +1,18 @@
 .idea
 .pynative
 ASN.1/c-codec
+ASN.1/chatroom.py
+ASN.1/chatroom_v2.py
+ASN.1/server-message-received
+ASN.1/server-message-received.b64
+ASN.1/test-client
+
 protobuf/compiled
+protobuf/test-client-v1
+protobuf/test-client-v2
+
+thrift/gen-hs
+thrift/gen-rb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -57,3 +68,6 @@ docs/_build/
 
 # PyBuilder
 target/
+
+.cabal-sandbox
+cabal.sandbox.config

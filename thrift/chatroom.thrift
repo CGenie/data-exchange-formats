@@ -1,30 +1,25 @@
 /* Specification of a simple chatroom protocol */
 
-ChatRoomProtocol DEFINITIONS ::= BEGIN
+struct User {
+    1: i32 id,
+    2: string email,
+    3: string username
+}
 
-    User ::= SEQUENCE {
-        id             OBJECT IDENTIFIER,
-        email          UTF8String (SIZE(1..40)),
-        username       UTF8String (SIZE(1..40)),
-        ...
-    }
+enum RoomType {
+    PRIVATE = 0,
+    PUBLIC = 1
+}
 
-    RoomType ::= CHOICE {
-        private    [0] NULL,
-        public     [1] NULL
-    }
+struct Room {
+    1: i32 id,
+    2: string name,
+    3: RoomType type
+}
 
-    Room ::= SEQUENCE {
-        id             OBJECT IDENTIFIER,
-        name           UTF8String (SIZE(1..40)),
-        type           RoomType
-    }
-
-    Message ::= SEQUENCE {
-        id             OBJECT IDENTIFIER,
-        user           User,
-        room           Room,
-        message        UTF8String (SIZE(1..128))
-    }
-
-END
+struct Message {
+    1: i32 id,
+    2: User user,
+    3: Room room,
+    4: string msg
+}
