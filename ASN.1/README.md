@@ -200,6 +200,7 @@ Unfortunately, it seems that `pyasn1` doesn't support this.
     - Some online viewers exist: http://www.geocities.co.jp/SiliconValley-SanJose/3377/asn1JS.html, http://lapo.it/asn1js/ but they do not convert to some native JavaScript datatypes
     - https://github.com/GlobalSign/ASN1.js seems to be quite OK (only `BER` seems to be supported) but lacks a string parser of schemas (you must construct it using JavaScript objects)
  - ["The one big thing about ASN.1 is, that ist is designed for specification not implementation. Therefore it is very good at hiding/ignoring implementation detail in any "real" programing language."](http://stackoverflow.com/a/13221519)
+ - [A very good explanation of `IMPLICIT` and `EXPLICIT`](http://www.mail-archive.com/asn1@oss.com/msg01062.html)
 
 ## Extensibility of ASN.1
 

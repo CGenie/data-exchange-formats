@@ -42,6 +42,13 @@ Various schema-less formats also exist (samples encode `{'compact': True, 'schem
   00000000: 83a7 636f 6d70 6163 74c3 a46e 616d 65a4  ..compact..name.
   00000010: 5465 7374 a673 6368 656d 6100            Test.schema.
   ```
+  
+Advantages of schema-based protocols is that the encoded message doesn't have to include the schema
+which results in messages of smaller size and faster encoding/decoding. Also basic validation is for free.
+
+JavaScript is special because it doesn't allow to run `FFI` code in browser. Thus, performance-wise, `JSON` is the
+preferred format. That's why if you use something else, aim for schema-based ones for more type-safety and
+other goodies. Here's the benchmark of `JSON` against `MessagePack`: https://jsperf.com/msgpack-js-vs-json
 
 ## Why not just stick with XML/JSON ?
 ([quote](https://ttsiodras.github.io/asn1.html)) "If you value optimal encoding/decoding performance, minimal encoded message size, guarantees of code safety, and minimal power requirements for encoding/decoding messages, then no, `XML` is most definitely NOT better. That's why your mobile phone has used `ASN.1` encoding while you were reading this article. I am not kidding - almost every single signalling message that your phone sends to the local cell tower, is encoded via `ASN.1`!
