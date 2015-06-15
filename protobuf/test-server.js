@@ -22,10 +22,10 @@ var server = net.createServer(function(c) {  // 'connection' listener
         console.log('Incoming data: ', data.toString());
 
         try {
-            msg = chatroom_v2.User.decode(data.toString(), 'base64');
+            msg = chatroom_v2.Message.decode(data.toString(), 'base64');
             console.log('unserialised (v2):', msg);
         } catch(e) {
-            msg = chatroom.User.decode(data.toString(), 'base64');
+            msg = chatroom.Message.decode(data.toString(), 'base64');
             console.log('unserialised:', msg);
         }
     });

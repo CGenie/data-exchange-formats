@@ -10,6 +10,7 @@ function generate {
     touch $DST_DIR/__init__.py
 
     protoc -I=$SRC_DIR --python_out=$DST_DIR $FILE
+    protoc -I=$SRC_DIR --go_out=$DST_DIR $FILE
 }
 
 generate ./chatroom.proto compiled

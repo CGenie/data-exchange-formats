@@ -7,38 +7,56 @@ from compiled import chatroom_pb2
 from compiled_v2 import chatroom_2_pb2
 
 
-def v1_user():
-    user = chatroom_pb2.User()
-    user.id = 1234
-    user.email = 'user@example.com'
-    user.username = 'test-user'
+def v1_message():
+    room_type = chatroom_pb2.PUBLIC
 
-    print 'Serialized user: %r' % user.SerializeToString()
-    print 'Base64-encoded: %s' % base64.b64encode(user.SerializeToString())
+    message = chatroom_pb2.Message()
+    message.id = 3
+    message.user.id = 1
+    message.user.email = 'user@example.com'
+    message.user.username = 'test-user'
 
-    return user
+    message.room.id = 2
+    message.room.name = 'test room'
+    message.room.type = room_type
+
+    message.msg = 'test message'
+
+    print 'Serialized message: %r' % message.SerializeToString()
+    print 'Base64-encoded: %s' % base64.b64encode(message.SerializeToString())
+
+    return message
 
 
-def v2_user():
-    user = chatroom_2_pb2.User()
-    user.id = 1234
-    user.email = 'user@example.com'
-    user.username = 'test-user'
-    user.first_name = 'Frank'
-    user.last_name = 'Underwood'
-    user.age = 50
+def v2_message():
+    room_type = chatroom_2_pb2.PUBLIC
 
-    print 'Serialized user: %r' % user.SerializeToString()
-    print 'Base64-encoded: %s' % base64.b64encode(user.SerializeToString())
+    message = chatroom_2_pb2.Message()
+    message.id = 3
+    message.user.id = 1
+    message.user.email = 'user@example.com'
+    message.user.username = 'test-user'
+    message.user.first_name = 'Frank'
+    message.user.last_name = 'Underwood'
+    message.user.age = 50
 
-    return user
+    message.room.id = 2
+    message.room.name = 'test room'
+    message.room.type = room_type
+
+    message.msg = 'test message'
+
+    print 'Serialized message: %r' % message.SerializeToString()
+    print 'Base64-encoded: %s' % base64.b64encode(message.SerializeToString())
+
+    return message
 
 if __name__ == '__main__':
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.connect(('localhost', 8002))
-    server.send(base64.b64encode(v1_user().SerializeToString()))
+    server.send(base64.b64encode(v1_message().SerializeToString()))
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.connect(('localhost', 8002))
-    server.send(base64.b64encode(v2_user().SerializeToString()))
+    server.send(base64.b64encode(v2_message().SerializeToString()))
 

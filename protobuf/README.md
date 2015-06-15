@@ -1,6 +1,16 @@
-Install Python packages from `requirements.txt`
+Install Python packages from `requirements.txt`:
+```
+pip install -r requirements.txt
+```
 
 Install NodeJS packages with `npm install`.
+
+Install Go `proto` package:
+```
+go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
+```
+(`protoc-gen-go` should be in your `$GOBIN`, if you don't know where it is, check `go env`).
+Then compile Go clients with `make`.
 
 Start NodeJS server with `node test-server.js`.
 
