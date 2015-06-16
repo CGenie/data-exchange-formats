@@ -26,6 +26,18 @@ Message:
 
 GitHub repo: https://github.com/CGenie/data-exchange-formats
 
+Looking [philosophically](http://c2.com/cgi/wiki?DataAndCodeAreTheSameThing): data and code
+are the same thing (see Lisp for example). Standard example of this is the definition [Church numerals](https://en.wikipedia.org/wiki/Church_encoding)
+in Lambda calculus (we use Python here):
+```
+id = lambda x: x
+zero = lambda f: id
+one = lambda f: lambda x: f(x)
+two = lambda f: lambda x: f(f(x))
+three = lambda f: lambda x: f(f(f(x)))
+```
+Then this would mean that the multitude of data representations corresponds to the multitude of programming languages.
+
 The ISO-standardized one is `ASN.1`. Big companies create and use their own:
 - Protocol Buffers (Google)
 - Thrift (Facebook)
@@ -44,7 +56,8 @@ Various schema-less formats also exist (samples encode `{'compact': True, 'schem
   ```
   
 Advantages of schema-based protocols is that the encoded message doesn't have to include the schema
-which results in messages of smaller size and faster encoding/decoding. Also basic validation is for free.
+which results in messages of smaller size and faster encoding/decoding (compare with `JSON` where
+every serialized string also contains all schema info, object keys, etc). Also basic validation is for free.
 
 JavaScript is special because it doesn't allow to run `FFI` code in browser. Thus, performance-wise, `JSON` is the
 preferred format. That's why if you use something else, aim for schema-based ones for more type-safety and
