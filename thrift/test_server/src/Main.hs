@@ -2,7 +2,8 @@
 
 module Main where
 
-import Chatroom_Types
+import qualified Chatroom_Types
+import qualified Chatroom_2_Types
 
 import Thrift
 import Thrift.Protocol.Binary
@@ -10,34 +11,40 @@ import Thrift.Transport
 import Thrift.Transport.Empty
 
 import Data.ByteString.Lazy.Char8 (pack)
+import Data.ByteString.Lazy.Internal (ByteString)
 import Network
+import System.Environment
 import System.IO (hSetBuffering, hGetContents, BufferMode(..))
 
 
-process proto handle = do
+versionedDecode proto version contents = if (version == 1) then
+            show $ Chatroom_Types.decode_Message proto contents
+        else
+            show $ Chatroom_2_Types.decode_Message proto contents
+
+
+process version proto handle = do
     contents <- hGetContents handle
 
     print $ "Read: " ++ show contents
 
-    let message = decode_Message proto $ pack contents
-
-    print $ show message
+    print $ versionedDecode proto version $ pack contents
 
 
-sockHandler proto sock = do
+sockHandler version proto sock = do
     (handle, _, _) <- accept sock
     hSetBuffering handle NoBuffering
     print "Client connected"
-    process proto handle
+    process version proto handle
 
-    sockHandler proto sock
+    sockHandler version proto sock
 
 
-serve proto =  withSocketsDo $ do
+serve version proto =  withSocketsDo $ do
     let port = 8003
     sock <- listenOn $ PortNumber port
     print $ "Listening on " ++ show port
-    sockHandler proto sock
+    sockHandler version proto sock
 
 
 main = do
@@ -45,22 +52,27 @@ main = do
 
     --transport <- hOpen ("localhost", PortNumber 8003)
 
+    args <- getArgs
+    let version = if (length args > 0) && (args !! 0 == "2") then 2 else 1
+
+    print $ "Supported version: " ++ show version
+
     let transport = EmptyTransport
     let binProto = BinaryProtocol transport
     let client = (binProto, binProto)
 
     print "Hello"
     print $ show user
-    print $ show $ from_User user
+    print $ show $ Chatroom_Types.from_User user
 
-    let encodedUser = encode_User binProto user
+    let encodedUser = Chatroom_Types.encode_User binProto user
     print $ show $ encodedUser
 
-    serve binProto
+    serve version binProto
 
 
-user = User {
-    user_id = 1
-  , user_email = "xyz@localhost"
-  , user_username = "test-user"
+user = Chatroom_Types.User {
+    Chatroom_Types.user_id = 1
+  , Chatroom_Types.user_email = "xyz@localhost"
+  , Chatroom_Types.user_username = "test-user"
 }

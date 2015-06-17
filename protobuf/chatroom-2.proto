@@ -6,8 +6,8 @@ message User {
     required int32 id = 1;
     required string email = 2;
     required string username = 3;
-    required string first_name = 4;
-    required string last_name = 5;
+    optional string first_name = 4;
+    optional string last_name = 5;
     optional int32 age = 6;
 }
 

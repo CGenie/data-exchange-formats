@@ -25,3 +25,15 @@ For the Ruby client:
 gem install bundler
 bundle install
 ```
+
+# Some notes
+
+[Thrift: The Missing Guide](http://diwakergupta.github.io/thrift-missing-guide/)
+
+Apart from primitive types: `bool`, `byte`, `i16`, `i32`, `i64`, `double`, `string` also
+container types are supported: `list<t1>`, `set<t1>`, `map<t1,t2>`. And you also have
+`const`, `enum` and `struct`.
+
+You can include other Thrift files with: `include "some-other-file.thrift"`.
+
+Structs require an integer identifier, this is called 'tags' in other schemas.
