@@ -201,6 +201,7 @@ Unfortunately, it seems that `pyasn1` doesn't support this.
     - https://github.com/GlobalSign/ASN1.js seems to be quite OK (only `BER` seems to be supported) but lacks a string parser of schemas (you must construct it using JavaScript objects)
  - ["The one big thing about ASN.1 is, that ist is designed for specification not implementation. Therefore it is very good at hiding/ignoring implementation detail in any "real" programing language."](http://stackoverflow.com/a/13221519)
  - [A very good explanation of `IMPLICIT` and `EXPLICIT`](http://www.mail-archive.com/asn1@oss.com/msg01062.html)
+ - Supports `IMPORTS` and `EXPORTS` clauses for module imports/exports ([see here](http://www.cse.msu.edu/rgroups/sens/Software/Telelogic-3.5/locale/english/help/htmlhlp/asn1util.html)).
 
 ## Extensibility of ASN.1
 
