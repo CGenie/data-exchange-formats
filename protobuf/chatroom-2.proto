@@ -9,6 +9,7 @@ message User {
     optional string first_name = 4;
     optional string last_name = 5;
     optional int32 age = 6;
+    repeated string badges = 7;
 }
 
 enum RoomType {

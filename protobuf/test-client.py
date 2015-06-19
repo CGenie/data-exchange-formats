@@ -2,6 +2,7 @@
 
 import base64
 import socket
+import sys
 
 from compiled import chatroom_pb2
 from compiled_v2 import chatroom_2_pb2
@@ -39,6 +40,7 @@ def v2_message():
     message.user.first_name = 'Frank'
     message.user.last_name = 'Underwood'
     message.user.age = 50
+    message.user.badges.extend(['novice', 'intermediate'])
 
     message.room.id = 2
     message.room.name = 'test room'
@@ -52,11 +54,15 @@ def v2_message():
     return message
 
 if __name__ == '__main__':
-    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.connect(('localhost', 8002))
-    server.send(base64.b64encode(v1_message().SerializeToString()))
+    v_msg = v1_message
+    version = 1
+    if len(sys.argv) > 1 and sys.argv[1] == 'v2':
+        v_msg = v2_message
+        version = 2
+
+    print 'Client version {}'.format(version)
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.connect(('localhost', 8002))
-    server.send(base64.b64encode(v2_message().SerializeToString()))
+    server.send(base64.b64encode(v_msg().SerializeToString()))
 
