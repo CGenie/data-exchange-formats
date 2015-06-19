@@ -30,6 +30,7 @@ if version == 2 then
     user.lastName = 'Underwood'
     user.age = 50
     user.badges = ['novice', 'intermediate']
+    user.after_badges = 'after badges'
 end
 
 room = Room.new

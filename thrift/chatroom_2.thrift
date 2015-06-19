@@ -7,7 +7,8 @@ struct User {
     4: optional string firstName,
     5: optional string lastName,
     6: optional i16 age,
-    7: list<string> badges
+    7: optional list<string> badges
+    8: optional string after_badges
 }
 
 enum RoomType {

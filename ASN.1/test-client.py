@@ -46,6 +46,7 @@ def v2_message():
     badges_tt[0] = 'novice'
     badges_tt[1] = 'intermediate'
     u.setComponentByName('badges', badges_tt)
+    u.setComponentByName('afterBadges', 'after badges')
 
     rt = chatroom_v2.RoomType()
     rt.setComponentByName('public', None)

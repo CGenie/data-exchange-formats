@@ -18,6 +18,7 @@ func get_message() (*chatroom.Message) {
         LastName: proto.String("Underwood"),
         Age: proto.Int32(50),
         Badges: []string{"novice", "intermediate"},
+        AfterBadges: proto.String("after badges"),
     }
     room_type := chatroom.RoomType_PUBLIC
     room := &chatroom.Room {
