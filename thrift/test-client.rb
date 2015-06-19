@@ -4,9 +4,15 @@ $:.push('gen-rb')
 
 require 'thrift'
 
-require 'chatroom_types'
+version = 1
+if ARGV[0] == 'v2' then
+    version = 2
+    require 'chatroom_2_types'
+else
+    require 'chatroom_types'
+end
 
-puts "Hello"
+puts 'Hello, version', version
 
 transport = Thrift::MemoryBufferTransport.new()
 protocol = Thrift::BinaryProtocol.new(transport)
@@ -18,6 +24,13 @@ user = User.new
 user.id = 1
 user.email = 'xyz@localhost'
 user.username = 'test-user'
+
+if version == 2 then
+    user.firstName = 'Frank'
+    user.lastName = 'Underwood'
+    user.age = 50
+    user.badges = ['novice', 'intermediate']
+end
 
 room = Room.new
 room.id = 2

@@ -53,7 +53,7 @@ main = do
     --transport <- hOpen ("localhost", PortNumber 8003)
 
     args <- getArgs
-    let version = if (length args > 0) && (args !! 0 == "2") then 2 else 1
+    let version = if (length args > 0) && (args !! 0 == "v2") then 2 else 1
 
     print $ "Supported version: " ++ show version
 
