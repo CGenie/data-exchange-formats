@@ -30,6 +30,17 @@ bundle install
 
 [Thrift: The Missing Guide](http://diwakergupta.github.io/thrift-missing-guide/)
 
+[Official language support](http://wiki.apache.org/thrift/LibraryFeatures?action=show&redirect=LanguageSupport):
+- C++
+- C#
+- Erlang
+- Haskell
+- Java
+- JavaScript
+- Python
+- Ruby
+- and many others with different protocols/transport support
+
 Thrift is [used by](http://wiki.apache.org/thrift/PoweredBy):
 - [Facebook](http://www.facebook.com) https://code.facebook.com/posts/1468950976659943/under-the-hood-building-and-open-sourcing-fbthrift/
 - [Hadoop](https://hadoop.apache.org/) http://wiki.apache.org/hadoop/Hbase/ThriftApi

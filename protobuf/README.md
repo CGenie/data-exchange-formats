@@ -26,6 +26,25 @@ Projects using Protocol Buffers:
 - [OpenStreetMap](http://www.openstreetmap.org/) for their [PBF Format](http://wiki.openstreetmap.org/wiki/PBF_Format)
 - [Ubuntu One](https://en.wikipedia.org/wiki/Ubuntu_One) for [storage](https://wiki.ubuntu.com/UbuntuOne/TechnicalDetails)
   (though One is [shut down now](http://blog.canonical.com/2014/04/02/shutting-down-ubuntu-one-file-services/))
+  
+[Supported languages](https://developers.google.com/protocol-buffers/docs/reference/other):
+- C++
+- Java
+- Python
+- Objective-C (3.0+)
+- C# (3.0+)
+
+[Third party language support](https://github.com/google/protobuf/wiki/Third-Party-Add-ons):
+- Clojure
+- Common Lisp
+- Erlang
+- Go
+- Haskell
+- JavaScript
+- Lua
+- Ruby
+- Scala
+- and many others
 
 
 ["Why didn't you just use ASN.1?" The answer was "We never heard of it before."](http://www.reddit.com/r/programming/comments/1hf7ds/useful_old_technologies_asn1/cau70wc)
