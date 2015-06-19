@@ -8,7 +8,8 @@ ChatRoomProtocol DEFINITIONS ::= BEGIN
         ...,
         firstName    [0]  UTF8String (SIZE(1..40)) OPTIONAL,
         lastName     [1]  UTF8String (SIZE(1..40)) OPTIONAL,
-        age          [2]  INTEGER OPTIONAL
+        age          [2]  INTEGER OPTIONAL,
+        badges       [3]  SEQUENCE OF UTF8String (SIZE(1..40)) OPTIONAL
     }
 
     RoomType ::= CHOICE {

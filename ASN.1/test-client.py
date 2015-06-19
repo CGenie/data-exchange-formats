@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 import socket
+import sys
 
-from pyasn1.codec.der import decoder
 from pyasn1.codec.der import encoder
 from pyasn1.type import univ
 
@@ -41,6 +41,11 @@ def v2_message():
     u.setComponentByName('firstName', 'Frank')
     u.setComponentByName('lastName', 'Underwood')
     u.setComponentByName('age', 50)
+    badges_idx = u.componentType.getPositionByName('badges')
+    badges_tt = u.componentType.getTypeByPosition(badges_idx).clone()
+    badges_tt[0] = 'novice'
+    badges_tt[1] = 'intermediate'
+    u.setComponentByName('badges', badges_tt)
 
     rt = chatroom_v2.RoomType()
     rt.setComponentByName('public', None)
@@ -60,11 +65,16 @@ def v2_message():
 
 
 if __name__ == '__main__':
-    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.connect(('localhost', 8001))
-    server.send(encoder.encode(v1_message()))
-    print server.recv(4096)
+    v_msg = v1_message
+    version = 1
+    if len(sys.argv) > 1 and sys.argv[1] == 'v2':
+        v_msg = v2_message
+        version = 2
+
+    print 'Running in version {}'.format(version)
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
     server.connect(('localhost', 8001))
-    server.send(encoder.encode(v2_message()))
+    server.send(encoder.encode(v_msg()))
+    print server.recv(4096)

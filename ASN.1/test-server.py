@@ -2,7 +2,7 @@
 
 import base64
 import socket
-import time
+import sys
 import traceback
 
 from pyasn1.codec.ber import encoder as ber_encoder
@@ -25,6 +25,14 @@ def decode(data, module):
 
 
 if __name__ == '__main__':
+    v_module = chatroom
+    version = 1
+    if len(sys.argv) > 1 and sys.argv[1] == 'v2':
+        v_module = chatroom_v2
+        version = 2
+
+    print 'Running in version {}'.format(version)
+
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind(('localhost', 8001))
     server.listen(5)
@@ -39,12 +47,8 @@ if __name__ == '__main__':
 
         print repr(data)
         try:
-            decode(data, chatroom_v2)
+            decode(data, v_module)
         except:
-            print 'Unsucessful V2 decoding, trying V1'
-            try:
-                decode(data, chatroom)
-            except Exception:
-                traceback.print_exc()
-                print
+            traceback.print_exc()
+            print
         clientsocket.send('done')
