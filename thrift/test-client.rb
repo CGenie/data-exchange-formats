@@ -22,28 +22,28 @@ transport.open
 
 user = User.new
 user.id = 1
-user.email = 'xyz@localhost'
-user.username = 'test-user'
+user.email = 'president@whitehouse.gov'
+user.username = 'MrPresident'
 
 if version == 2 then
     user.firstName = 'Frank'
     user.lastName = 'Underwood'
     user.age = 50
-    user.badges = ['novice', 'intermediate']
+    user.badges = ['caring', 'loving']
     user.after_badges = 'after badges'
 end
 
 room = Room.new
 room.id = 2
-room.name = 'test room'
-room.type = RoomType::PUBLIC
+room.name = 'Chat with Claire'
+room.type = RoomType::PRIVATE
 
 message = Message.new
 message.id = 3
 message.user = user
 message.room = room
 message.timestamp = Time.now.getutc.to_i
-message.msg = 'test message'
+message.msg = 'Hello Honey'
 
 puts 'Serialized: ', serializer.serialize(message)
 

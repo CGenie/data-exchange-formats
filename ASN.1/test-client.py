@@ -14,19 +14,27 @@ import chatroom_v2
 
 utc = tz.gettz('UTC')
 
+email = 'president@whitehouse.gov'
+username = 'MrPresident'
+first_name = 'Frank'
+last_name = 'Underwood'
+age = 50
+roomname = 'Chat with Claire'
+message = 'Hello Honey'
+
 
 def v1_message():
     u = chatroom.User()
     u.setComponentByName('id', univ.ObjectIdentifier((1, 1)))
-    u.setComponentByName('email', 'xyz@localhost')
-    u.setComponentByName('username', 'User')
+    u.setComponentByName('email', email)
+    u.setComponentByName('username', username)
 
     rt = chatroom.RoomType()
-    rt.setComponentByName('public', None)
+    rt.setComponentByName('private', None)
 
     r = chatroom.Room()
     r.setComponentByName('id', univ.ObjectIdentifier((2, 1)))
-    r.setComponentByName('name', 'Test Room')
+    r.setComponentByName('name', roomname)
     r.setComponentByName('type', rt)
 
     m = chatroom.Message()
@@ -34,7 +42,7 @@ def v1_message():
     m.setComponentByName('user', u)
     m.setComponentByName('room', r)
     m.setComponentByName('timestamp', datetime.datetime.now(tz=utc))
-    m.setComponentByName('message', 'Test chatroom message')
+    m.setComponentByName('message', message)
 
     return m
 
@@ -42,24 +50,24 @@ def v1_message():
 def v2_message():
     u = chatroom_v2.User()
     u.setComponentByName('id', univ.ObjectIdentifier((1, 1)))
-    u.setComponentByName('email', 'xyz@localhost')
-    u.setComponentByName('username', 'User')
-    u.setComponentByName('firstName', 'Frank')
-    u.setComponentByName('lastName', 'Underwood')
-    u.setComponentByName('age', 50)
+    u.setComponentByName('email', email)
+    u.setComponentByName('username', username)
+    u.setComponentByName('firstName', first_name)
+    u.setComponentByName('lastName', last_name)
+    u.setComponentByName('age', age)
     badges_idx = u.componentType.getPositionByName('badges')
     badges_tt = u.componentType.getTypeByPosition(badges_idx).clone()
-    badges_tt[0] = 'novice'
-    badges_tt[1] = 'intermediate'
+    badges_tt[0] = 'caring'
+    badges_tt[1] = 'loving'
     u.setComponentByName('badges', badges_tt)
     u.setComponentByName('afterBadges', 'after badges')
 
     rt = chatroom_v2.RoomType()
-    rt.setComponentByName('public', None)
+    rt.setComponentByName('private', None)
 
     r = chatroom_v2.Room()
     r.setComponentByName('id', univ.ObjectIdentifier((2, 1)))
-    r.setComponentByName('name', 'Test Room')
+    r.setComponentByName('name', roomname)
     r.setComponentByName('type', rt)
 
     m = chatroom_v2.Message()
@@ -67,7 +75,7 @@ def v2_message():
     m.setComponentByName('user', u)
     m.setComponentByName('room', r)
     m.setComponentByName('timestamp', datetime.datetime.now(tz=utc))
-    m.setComponentByName('message', 'Test chatroom message')
+    m.setComponentByName('message', message)
 
     return m
 

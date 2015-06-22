@@ -84,14 +84,14 @@ int main(int argc, char* argv[]) {
 
     User_t* user;
     int user_id[] = {1, 1};
-    const char EMAIL[] = "abx@localhost";
-    const char USERNAME[] = "TestUser";
+    const char EMAIL[] = "president@whitehouse.gov";
+    const char USERNAME[] = "MrPresident";
 
     RoomType_t* rt;
 
     Room_t* room;
     int room_id[] = {2, 1};
-    const char ROOMNAME[] = "Test Room";
+    const char ROOMNAME[] = "Chat with Claire";
 
     time_t rawtime;
     struct tm *timeinfo;
@@ -102,7 +102,7 @@ int main(int argc, char* argv[]) {
     // Code in OBJECT_IDENTIFIER.c reveals some special treatment for first
     // value being in 0..2 range. Strange!
     int message_id[] = {2, 2};
-    const char MESSAGE[] = "This is a test message";
+    const char MESSAGE[] = "Hello Honey";
 
     asn_enc_rval_t ec;
     OCTET_STRING_t *q;
@@ -121,7 +121,7 @@ int main(int argc, char* argv[]) {
 
     // ROOMTYPE
     rt = calloc(1, sizeof(RoomType_t));
-    rt->present = RoomType_PR_public;
+    rt->present = RoomType_PR_private;
 
     // ROOM
     room = calloc(1, sizeof(Room_t));

@@ -1,11 +1,25 @@
 #!/usr/bin/env python
 
 import base64
+import datetime
+from dateutil import tz
 import socket
 import sys
 
 from compiled import chatroom_pb2
 from compiled_v2 import chatroom_2_pb2
+
+
+utc = tz.gettz('UTC')
+
+
+email = 'president@whitehouse.gov'
+username = 'MrPresident'
+first_name = 'Frank'
+last_name = 'Underwood'
+age = 50
+roomname = 'Chat with Claire'
+message_text = 'Hello Honey'
 
 
 def v1_message():
@@ -14,14 +28,16 @@ def v1_message():
     message = chatroom_pb2.Message()
     message.id = 3
     message.user.id = 1
-    message.user.email = 'user@example.com'
-    message.user.username = 'test-user'
+    message.user.email = email
+    message.user.username = username
 
     message.room.id = 2
-    message.room.name = 'test room'
+    message.room.name = roomname
     message.room.type = room_type
 
-    message.msg = 'test message'
+    message.timestamp = datetime.datetime.now(tz=utc).isoformat()
+
+    message.msg = message_text
 
     print 'Serialized message: %r' % message.SerializeToString()
     print 'Base64-encoded: %s' % base64.b64encode(message.SerializeToString())
@@ -35,18 +51,20 @@ def v2_message():
     message = chatroom_2_pb2.Message()
     message.id = 3
     message.user.id = 1
-    message.user.email = 'user@example.com'
-    message.user.username = 'test-user'
-    message.user.first_name = 'Frank'
-    message.user.last_name = 'Underwood'
-    message.user.age = 50
-    message.user.badges.extend(['novice', 'intermediate'])
+    message.user.email = email
+    message.user.username = username
+    message.user.first_name = first_name
+    message.user.last_name = last_name
+    message.user.age = age
+    message.user.badges.extend(['caring', 'loving'])
 
     message.room.id = 2
-    message.room.name = 'test room'
+    message.room.name = roomname
     message.room.type = room_type
 
-    message.msg = 'test message'
+    message.timestamp = datetime.datetime.now(tz=utc).isoformat()
+
+    message.msg = message_text
 
     print 'Serialized message: %r' % message.SerializeToString()
     print 'Base64-encoded: %s' % base64.b64encode(message.SerializeToString())

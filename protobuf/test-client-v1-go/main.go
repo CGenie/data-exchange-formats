@@ -13,13 +13,13 @@ import (
 func get_message() (*chatroom.Message) {
     user := &chatroom.User {
         Id: proto.Int32(1),
-        Email: proto.String("xyz@localhost"),
-        Username: proto.String("test-user"),
+        Email: proto.String("president@whitehouse.gov"),
+        Username: proto.String("MrPresident"),
     }
-    room_type := chatroom.RoomType_PUBLIC
+    room_type := chatroom.RoomType_PRIVATE
     room := &chatroom.Room {
         Id: proto.Int32(2),
-        Name: proto.String("test room"),
+        Name: proto.String("Chat with Claire"),
         Type: &room_type,
     }
     now := time.Now()
@@ -30,7 +30,7 @@ func get_message() (*chatroom.Message) {
         User: user,
         Room: room,
         Timestamp: &timestamp,
-        Msg: proto.String("test message"),
+        Msg: proto.String("Hello Honey"),
     }
 
     return message
