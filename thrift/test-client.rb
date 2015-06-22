@@ -42,6 +42,7 @@ message = Message.new
 message.id = 3
 message.user = user
 message.room = room
+message.timestamp = Time.now.getutc.to_i
 message.msg = 'test message'
 
 puts 'Serialized: ', serializer.serialize(message)

@@ -1,5 +1,7 @@
 /* Specification of a simple chatroom protocol */
 
+typedef i64 Timestamp
+
 struct User {
     1: i32 id,
     2: string email,
@@ -26,5 +28,6 @@ struct Message {
     1: i32 id,
     2: User user,
     3: Room room,
-    4: string msg
+    4: Timestamp timestamp,
+    5: string msg
 }
