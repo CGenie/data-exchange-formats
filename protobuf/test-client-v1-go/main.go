@@ -4,6 +4,7 @@ import (
     b64 "encoding/base64"
     "log"
     "net"
+    "time"
 
     "github.com/golang/protobuf/proto"
     "../compiled"
@@ -21,10 +22,14 @@ func get_message() (*chatroom.Message) {
         Name: proto.String("test room"),
         Type: &room_type,
     }
+    now := time.Now()
+    now_utc := now.UTC()
+    timestamp := now_utc.String()
     message := &chatroom.Message {
         Id: proto.Int32(3),
         User: user,
         Room: room,
+        Timestamp: &timestamp,
         Msg: proto.String("test message"),
     }
 

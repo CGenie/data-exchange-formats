@@ -28,6 +28,7 @@ message Message {
     required int32 id = 1;
     required User user = 2;
     required Room room = 3;
-    required string msg = 4;
+    required string timestamp = 4;
+    required string msg = 5;
 }
 
