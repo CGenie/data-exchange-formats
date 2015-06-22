@@ -21,6 +21,14 @@ Message:
     message:   String
 ```
 
+In version 2 of the protocol we extend the `User` model by adding the following fields:
+```
+    firstName: String
+    lastName:  String
+    age:       Integer
+    badges:    String[]
+```
+
 
 # General remarks about data exchange formats
 
