@@ -8,10 +8,13 @@ User:
     id:        Integer
     email:     String
     username:  String
+    
+RoomType:      Private | Public
 
 Room:
     id:        Integer
     name:      String
+    type:      RoomType
 
 Message:
     id:        Integer

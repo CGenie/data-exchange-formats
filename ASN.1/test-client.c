@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 #include <unistd.h>
 #include <errno.h>
 #include <arpa/inet.h>
@@ -92,6 +93,10 @@ int main(int argc, char* argv[]) {
     int room_id[] = {2, 1};
     const char ROOMNAME[] = "Test Room";
 
+    time_t rawtime;
+    struct tm *timeinfo;
+    UTCTime_t *timestamp;
+
     Message_t* message;
     // NOTE: set message_id[] to {3, 1} and you get <absent> message_id ?
     // Code in OBJECT_IDENTIFIER.c reveals some special treatment for first
@@ -137,6 +142,11 @@ int main(int argc, char* argv[]) {
     message->user = *user;
     // Message.room
     message->room = *room;
+    // Message.timestamp
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+    timestamp = asn_time2UT(NULL, timeinfo, 0);
+    message->timestamp = *timestamp;
     // Message.message
     q = OCTET_STRING_new_fromBuf(&asn_DEF_UTF8String, MESSAGE, strlen(MESSAGE));
     message->message = *q;

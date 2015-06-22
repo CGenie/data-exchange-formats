@@ -28,6 +28,7 @@ ChatRoomProtocol DEFINITIONS ::= BEGIN
         id             OBJECT IDENTIFIER,
         user           User,
         room           Room,
+        timestamp      UTCTime,
         message        UTF8String (SIZE(1..128))
     }
 

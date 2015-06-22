@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import datetime
+from dateutil import tz
 import socket
 import sys
 
@@ -8,6 +10,9 @@ from pyasn1.type import univ
 
 import chatroom
 import chatroom_v2
+
+
+utc = tz.gettz('UTC')
 
 
 def v1_message():
@@ -28,6 +33,7 @@ def v1_message():
     m.setComponentByName('id', univ.ObjectIdentifier((3, 1)))
     m.setComponentByName('user', u)
     m.setComponentByName('room', r)
+    m.setComponentByName('timestamp', datetime.datetime.now(tz=utc))
     m.setComponentByName('message', 'Test chatroom message')
 
     return m
@@ -60,6 +66,7 @@ def v2_message():
     m.setComponentByName('id', univ.ObjectIdentifier((3, 1)))
     m.setComponentByName('user', u)
     m.setComponentByName('room', r)
+    m.setComponentByName('timestamp', datetime.datetime.now(tz=utc))
     m.setComponentByName('message', 'Test chatroom message')
 
     return m
