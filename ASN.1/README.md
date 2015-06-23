@@ -115,7 +115,10 @@ in 1987 under references ISO 8824 and ISO 8825. The ISO and ITU-T commitees have
 - The generality of `INTEGER` is sometimes held against `ASN.1` but the specifier can just add range definition and for example for range
   `INTEGER (12345..12346)` the `PER` encoder would encode this number on a single bit.
 - There are many different exotic string types, which is a legacy of old technologies like Videotex (Minitel for example)
-  [!Minitel](http://cdn.arstechnica.net//wp-content/uploads/2012/06/4271111360_dc27809b59_o.jpg)
+  [!Minitel](http://cdn.arstechnica.net//wp-content/uploads/2012/06/4271111360_dc27809b59_o.jpg):
+  `NumericString`, `PrintableString`, `VisibleString`, `ISO646String`, `IA5String`,
+  `TeletexString`, `T61String`, `VideotexString`, `GraphicString`, `GeneralString`, `UniversalString`,
+  `UTF8String`.
 - Not only `INTEGER` ranges are allowed as in `INTEGER (1..40)` but also character ranges as in
   ```
   upperCase UTF8String (FROM("A".."Z"))
