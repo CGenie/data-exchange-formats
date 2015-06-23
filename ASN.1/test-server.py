@@ -5,6 +5,7 @@ import socket
 import sys
 import traceback
 
+#from pyasn1.codec.ber import decoder as ber_decoder
 from pyasn1.codec.ber import encoder as ber_encoder
 from pyasn1.codec.der import decoder as der_decoder
 
@@ -15,8 +16,8 @@ import chatroom_v2
 def decode(data, module):
     decoded = der_decoder.decode(data, module.Message())
     print decoded[0].prettyPrint()
-    ber_encoded = ber_encoder.encode(decoded[0])
     # DER-encoded strings can be decoded with BER too
+    ber_encoded = ber_encoder.encode(decoded[0])
     print der_decoder.decode(ber_encoded, module.Message())[0].prettyPrint()
     with open('server-message-received', 'wb') as f:
         f.write(data)

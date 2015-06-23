@@ -94,7 +94,9 @@ ASN.1 supports a wide range of types, including things like [GeneralizedTime](ht
 `ASN.1` is a schema language with multiple set of encoding rules, while `JSON` is a data format.
 
 [`ASN.1` playground](http://asn1-playground.oss.com/)
+
 [Encoding rules](http://www.oss.com/asn1/resources/asn1-made-simple/encoding-rules.html)
+
 `OpenSSL` [includes](https://www.openssl.org/docs/apps/asn1parse.html) an `ASN.1` parser: `openssl asn1parse -in ~/.ssh/id_rsa.asn1-test` (_WARNING_: file needs to be unencrypted, if it is encrypted use `openssl rsa -in <encrypted_file> -out <unencrypted_file>`).
 
 ## Birth of ASN.1

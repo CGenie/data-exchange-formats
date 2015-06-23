@@ -6,7 +6,7 @@ import socket
 import sys
 
 from pyasn1.codec.der import encoder
-from pyasn1.type import univ
+from pyasn1.type import univ, useful
 
 import chatroom
 import chatroom_v2
@@ -20,6 +20,8 @@ first_name = 'Frank'
 last_name = 'Underwood'
 age = 50
 roomname = 'Chat with Claire'
+now = datetime.datetime.now(tz=utc)
+now_s = useful.UTCTime(now.strftime('%y%m%d%H%M%S'))
 message = 'Hello Honey'
 
 
@@ -38,10 +40,10 @@ def v1_message():
     r.setComponentByName('type', rt)
 
     m = chatroom.Message()
-    m.setComponentByName('id', univ.ObjectIdentifier((3, 1)))
+    m.setComponentByName('id', univ.ObjectIdentifier((2, 2)))
     m.setComponentByName('user', u)
     m.setComponentByName('room', r)
-    m.setComponentByName('timestamp', datetime.datetime.now(tz=utc))
+    m.setComponentByName('timestamp', now_s)
     m.setComponentByName('message', message)
 
     return m
@@ -71,10 +73,10 @@ def v2_message():
     r.setComponentByName('type', rt)
 
     m = chatroom_v2.Message()
-    m.setComponentByName('id', univ.ObjectIdentifier((3, 1)))
+    m.setComponentByName('id', univ.ObjectIdentifier((2, 1)))
     m.setComponentByName('user', u)
     m.setComponentByName('room', r)
-    m.setComponentByName('timestamp', datetime.datetime.now(tz=utc))
+    m.setComponentByName('timestamp', now_s)
     m.setComponentByName('message', message)
 
     return m
