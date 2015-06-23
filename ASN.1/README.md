@@ -196,7 +196,8 @@ Unfortunately, it seems that `pyasn1` doesn't support this.
 
 - You can encode `ASN.1` in your favorite `JSON` format: http://www.obj-sys.com/docs/JSONEncodingRules.pdf 
 - Redditors opinions about `ASN.1` are very extreme: http://www.reddit.com/r/programming/comments/1hf7ds/useful_old_technologies_asn1/ (provide some quotes)
-- Some quotes from [Eric Naggum's](http://en.wikipedia.org/wiki/Erik_Naggum) post regarding `ASN.1`:
+- Some quotes from [Eric Naggum's](http://en.wikipedia.org/wiki/Erik_Naggum) [post](http://www.xach.com/naggum/articles/3242274237190594@naggum.no.txt)
+  (and [another good one] (http://www.schnada.de/grapt/eriknaggum-xmlrant.html)) regarding `ASN.1`:
   - "This experiment was among the many data points that led me to conclude that SGML is insane and that those who think it is rational to require parsing of character data at each and every application interface are literally retarded and willfully blind.  Also, an SDIF data stream can only represent a validated document and the kinds of errors you get when parsing ASN.1 are unforgiving."
   -  "But, alas, people prefer buggy text formats that they can approximate rather than precise binary formats that follow general rules that are make them as easy to use as text formats."
   -  JavaScript supports seems to be quite bad:
