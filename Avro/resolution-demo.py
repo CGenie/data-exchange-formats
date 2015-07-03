@@ -47,6 +47,7 @@ for user in reader_v2:
     print 'V1 -> V2: {}'.format(user)
 reader_v2.close()
 
+
 writer_v2 = get_writer(schema_v2)
 writer_v2.append({'email': 'president@whitehouse.gov', 'username': 'MrPresident', 'firstName': 'Frank', 'lastName': 'Underwood'})
 writer_v2.close()

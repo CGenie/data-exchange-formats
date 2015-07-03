@@ -1,4 +1,7 @@
 -- Specification of a simple chatroom protocol
+-- You can use EXTENSIBILITY IMPLIED instead
+-- of putting ellipsis (...) everywhere
+
 ChatRoomProtocol DEFINITIONS ::= BEGIN
 
     User ::= SEQUENCE {

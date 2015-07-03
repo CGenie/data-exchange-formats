@@ -22,6 +22,7 @@ Use the Python client with `python test-client.py`.
 
 Projects using Protocol Buffers:
 - Google
+- [Apache Mesos](http://mesos.apache.org/)
 - [Hadoop](https://hadoop.apache.org/) http://wiki.apache.org/hadoop/ProtocolBuffers
 - [OpenStreetMap](http://www.openstreetmap.org/) for their [PBF Format](http://wiki.openstreetmap.org/wiki/PBF_Format)
 - [Ubuntu One](https://en.wikipedia.org/wiki/Ubuntu_One) for [storage](https://wiki.ubuntu.com/UbuntuOne/TechnicalDetails)
